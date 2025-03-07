@@ -100,7 +100,7 @@ def crackPassword(passwordHash, algo, wordList, mangle, solution):
 		mangle (Bool): Mangles each words
 		solution (String): Return variable for the solution (if found)
 	"""
-
+ 
 	for word in wordList:
 		mangledList = [word]
 
@@ -141,7 +141,7 @@ def startCrackWithCPU(passwordHash, algo, file, mangle):
 	Returns
 		String: Returns found word or None type
 	"""
-
+ 
 	tic = time.perf_counter()
 	try:
 		with open(file, "r") as wordListFile:
@@ -155,7 +155,7 @@ def startCrackWithCPU(passwordHash, algo, file, mangle):
 	manager = multiprocessing.Manager()
 	solution = manager.Value('str', None)
 
-	numThreads = multiprocessing.cpu_count() - 2
+	numThreads = multiprocessing.cpu_count()
 
 	seperatedList = list(divideList(wordList, numThreads))
 
